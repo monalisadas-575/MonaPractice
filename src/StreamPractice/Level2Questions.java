@@ -32,10 +32,18 @@ public class Level2Questions {
                 .entrySet().stream()
                 .filter(c->c.getValue()==1)
                 .map(Map.Entry::getKey)
-                .findFirst().
+                .findFirst().      //w
                 orElse(null);  // todo 2nd type to find 1st  non-repeating
 
+        //4.find frequency of each character
+        System.out.println(name.chars().mapToObj(c->(char)c)
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting())));  //{s=3, w=1, i=1}
 
+
+        //5. join string using comma
+        List<String> name3 =Arrays.asList("Java","Python","Go");
+        String collect = name3.stream().collect(Collectors.joining(","));
+        System.out.println(collect);
 
 
     }
