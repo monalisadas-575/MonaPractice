@@ -1,9 +1,6 @@
 package StreamPractice;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,11 +9,13 @@ public class Level2Questions {
     public static void main(String[] args) {
         //1. find maximum number
         List<Integer> numbers = Arrays.asList(10,45,3,99);
-        Integer maxNumber = numbers.stream().max((x,y)->x-y).get();
-        System.out.println(maxNumber);
+        Integer maxNumber = numbers.stream().max(Integer::compareTo).orElse(null);
+        System.out.println(maxNumber);   //99
 
         //2. find second max number
-        Integer secondMax = numbers.stream().skip(1).findFirst().get() ;
+        Integer secondMax = numbers.stream().
+                distinct().sorted(Comparator.reverseOrder()).skip(1)
+                .findFirst().orElse(null) ;
         System.out.println(secondMax);
 
         //3.find first non-repeated character
@@ -36,8 +35,9 @@ public class Level2Questions {
                 orElse(null);  // todo 2nd type to find 1st  non-repeating
 
         //4.find frequency of each character
-        System.out.println(name.chars().mapToObj(c->(char)c)
-                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting())));  //{s=3, w=1, i=1}
+        Map<Character, Long> collect1 = name.chars().mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println(collect1);    //{s=3, w=1, i=1}
 
 
         //5. join string using comma
