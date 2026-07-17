@@ -10,7 +10,9 @@ public class Level2Questions {
         //1. find maximum number
         List<Integer> numbers = Arrays.asList(10,45,3,99);
         Integer maxNumber = numbers.stream().max(Integer::compareTo).orElse(null);
+        Integer maxNumberByCollector = numbers.stream().collect(Collectors.maxBy(Integer::compareTo)).orElse(null);
         System.out.println(maxNumber);   //99
+
 
         //2. find second max number
         Integer secondMax = numbers.stream().
@@ -42,7 +44,7 @@ public class Level2Questions {
 
         //5. join string using comma
         List<String> name3 =Arrays.asList("Java","Python","Go");
-        String collect = name3.stream().collect(Collectors.joining(","));
+        String collect = name3.stream().collect(Collectors.joining( ", "));
         System.out.println(collect);
 
 

@@ -1,8 +1,6 @@
 package StreamPractice;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Level5Questions {
     public static void main(String[] args) {
@@ -17,7 +15,8 @@ public class Level5Questions {
         //22.find top 3 highest numbers
         List<Integer> numbers = Arrays.asList(5,99,12,45,88,100);
          List<Integer> highestNumber=numbers.stream().sorted(Comparator.comparing(Integer::intValue)
-                 .reversed()).limit(3).toList();
+                 .reversed()).limit(3).toList(); //todo type-1
+        System.out.println(numbers.stream().sorted(Comparator.reverseOrder()).limit(3).toList()); //todo type-2
         System.out.println(highestNumber);
 
         //23. Find sum of squares
@@ -36,9 +35,9 @@ public class Level5Questions {
         emp4.setSalary(8000);
 
         List<Employee> employeeList = Arrays.asList(emp1,emp2,emp3,emp4);
-        List<String> employeeName  =employeeList.stream().filter(x->x.getAge()>30)
-                .sorted(Comparator.comparing(Employee::getSalary)).map(Employee::getName).toList();
-        System.out.println(employeeName);       //[jhunnu, kunnu]
+        Map<String, Long> collect = employeeList.stream().filter(x -> x.getAge() > 30)
+                .sorted(Comparator.comparing(Employee::getSalary)).collect(Collectors.toMap(Employee::getName, Employee::getSalary));
+        System.out.println(collect);       //{kunnu=30000, jhunnu=8000}
 
 
     }

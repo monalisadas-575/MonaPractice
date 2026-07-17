@@ -1,4 +1,4 @@
-package multiThreadingPrcatice.level3AvoidDeadLock;
+ package multiThreadingPrcatice.level3AvoidDeadLock;
 
 import java.util.concurrent.locks.ReentrantLock;
 

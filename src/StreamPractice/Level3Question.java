@@ -24,6 +24,8 @@ public class Level3Question {
                 number2.stream().
                         collect(Collectors.groupingBy(x -> x % 2 == 0?"Even":"Odd"));
         System.out.println(collect);     //{Even=[2, 4], Odd=[1, 3, 5]}
+        System.out.println("===================================");
+        System.out.println(number2.stream().collect(Collectors.partitioningBy(x->x%2==0)));
 
         //13. Group employees by department
         List<Employee> employeeList = Arrays.asList(new Employee(100,"Mona","IT")
